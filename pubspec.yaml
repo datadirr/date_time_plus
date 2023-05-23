@@ -2,10 +2,10 @@ name: date_time_plus
 description: Pick Date and Time functions, Date and Time convert functions.
 repository: https://github.com/datadirr/date_time_plus.git
 homepage: https://datadirr.com
-version: 1.1.0
+version: 1.2.0
 
 environment:
-  sdk: '>=2.19.6 <3.7.7'
+  sdk: '>=2.19.6 <4.0.0'
   flutter: ">=2.5.0"
 
 dependencies:
@@ -14,7 +14,7 @@ dependencies:
   flutter_web_plugins:
     sdk: flutter
   plugin_platform_interface: ^2.1.4
-  intl: ^0.17.0
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:
