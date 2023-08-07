@@ -5,9 +5,11 @@ import 'package:intl/intl.dart';
 class DateTimes {
   static const String _am = "am";
   static const String _pm = "pm";
+  static const String fdd = "dd";
+  static const String fMM = "MM";
+  static const String fyyyy = "yyyy";
   static const String fyyyyMMdd = "yyyy-MM-dd";
   static const String fyyyyMMddHHmmss = "yyyy-MM-dd HH:mm:ss";
-  static const String fyyyy = "yyyy";
   static const String fHHmmss = "HH:mm:ss";
   static const String fhhmmpp = "hh:mm am";
   static const String fHHmm = "HH:mm";
