@@ -30,9 +30,42 @@ class DateTimePicker extends StatefulWidget {
 
 class _DateTimePickerState extends State<DateTimePicker> {
   String _selectedDate = DateTimes.getCurrentDateTime();
+  String _selectedFromDate = DateTimes.getCurrentDateTime();
+  String _selectedToDate = DateTimes.getCurrentDateTime();
   String _selectedTime = DateTimes.getCurrentTime();
   final TextEditingController _conDate = TextEditingController();
+  final TextEditingController _conDateRange = TextEditingController();
   final TextEditingController _conTime = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    log(DateTimes.calcValueByDate(fromDate: "1997-04-26", toDate: "1997-04-30")
+        .days
+        .toString());
+    log(DateTimes.calcValueByDate(fromDate: "1997-04-26", toDate: "1997-04-30")
+        .hours
+        .toString());
+    log(DateTimes.calcValueByDate(fromDate: "1997-04-26", toDate: "1997-04-30")
+        .minutes
+        .toString());
+    log(DateTimes.calcValueByDate(fromDate: "1997-04-26", toDate: "1997-04-30")
+        .seconds
+        .toString());
+
+    log(DateTimes.startAndEndDateOfMonth(date: "1997-04-26").startDate);
+    log(DateTimes.startAndEndDateOfMonth(date: "1997-04-26").endDate);
+
+    log(DateTimes.timer(seconds: 1200).days.toString());
+    log(DateTimes.timer(seconds: 1200).hours.toString());
+    log(DateTimes.timer(seconds: 1200).minutes.toString());
+    log(DateTimes.timer(seconds: 1200).seconds.toString());
+
+    log(DateTimes.timeToValue(time: "12:12:12").days.toString());
+    log(DateTimes.timeToValue(time: "12:12:12").hours.toString());
+    log(DateTimes.timeToValue(time: "12:12:12").minutes.toString());
+    log(DateTimes.timeToValue(time: "12:12:12").seconds.toString());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +93,30 @@ class _DateTimePickerState extends State<DateTimePicker> {
                         log(date);
                         setState(() {
                           _selectedDate = date;
+                        });
+                      });
+                },
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              TextField(
+                controller: _conDateRange
+                  ..text =
+                      "${DateTimes.reverseDate(date: _selectedFromDate)} / ${DateTimes.reverseDate(date: _selectedToDate)}",
+                readOnly: true,
+                decoration: const InputDecoration(
+                    labelText: "Date Range", hintText: "Select Date Range"),
+                onTap: () {
+                  DateTimes.dateRangePicker(
+                      context: context,
+                      fromDate: _selectedFromDate,
+                      toDate: _selectedToDate,
+                      onSelected: (fromDate, toDate) {
+                        log("$fromDate / $toDate");
+                        setState(() {
+                          _selectedFromDate = fromDate;
+                          _selectedToDate = toDate;
                         });
                       });
                 },

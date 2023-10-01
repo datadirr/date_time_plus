@@ -1,6 +1,6 @@
 ## 1.4.0
 
-* Pick Date and Time functions, Date and Time convert functions.
+* Pick Date Range, Add more convert function, Move Date Time Format.
 
 ## 1.3.0
 

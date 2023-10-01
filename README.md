@@ -45,6 +45,17 @@ DateTimes.datePicker(
 });
 ```
 
+* Date Range Picker
+```dart
+DateTimes.dateRangePicker(
+  context: context,
+  fromDate: "1997-04-26",
+  toDate: "1997-04-30",
+  onSelected: (fromDate, toDate) {
+    log("$fromDate / $toDate");
+});
+```
+
 * Time Picker
 ```dart
 DateTimes.timePicker(
@@ -53,5 +64,36 @@ DateTimes.timePicker(
   onSelected: (time) {
     log(time);
 });
+```
+
+
+* Calculate days, hours, minutes, seconds by date
+```dart
+DateTimes.calcValueByDate(fromDate: "1997-04-26", toDate: "1997-04-30").days
+DateTimes.calcValueByDate(fromDate: "1997-04-26", toDate: "1997-04-30").hours
+DateTimes.calcValueByDate(fromDate: "1997-04-26", toDate: "1997-04-30").minutes
+DateTimes.calcValueByDate(fromDate: "1997-04-26", toDate: "1997-04-30").seconds
+```
+
+* Start & End Date by date of month
+```dart
+DateTimes.startAndEndDateOfMonth(date: "1997-04-26").startDate
+DateTimes.startAndEndDateOfMonth(date: "1997-04-26").endDate
+```
+
+* Convert total seconds to time value (days, hours, minutes, seconds) (timer)
+```dart
+DateTimes.timer(seconds: 1200).days
+DateTimes.timer(seconds: 1200).hours
+DateTimes.timer(seconds: 1200).minutes
+DateTimes.timer(seconds: 1200).seconds
+```
+
+* Convert time to time value (days, hours, minutes, seconds)
+```dart
+DateTimes.timeToValue(time: "12:12:12").days
+DateTimes.timeToValue(time: "12:12:12").hours
+DateTimes.timeToValue(time: "12:12:12").minutes
+DateTimes.timeToValue(time: "12:12:12").seconds
 ```
 
