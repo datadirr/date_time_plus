@@ -243,15 +243,18 @@ class DateTimes {
       String? time,
       String? minTime,
       String? maxTime,
-      bool format24Hours = false}) {
+      bool format24Hours = false,
+      TimePickerEntryMode timePickerEntryMode = TimePickerEntryMode.dial}) {
     showTimePicker(
             context: context,
             initialTime: stringToTime(time: time),
+            initialEntryMode: timePickerEntryMode,
             builder: format24Hours
                 ? (context, child) {
                     return MediaQuery(
-                      data: MediaQuery.of(context)
-                          .copyWith(alwaysUse24HourFormat: true),
+                      data: MediaQuery.of(context).copyWith(
+                        alwaysUse24HourFormat: true,
+                      ),
                       child: child ?? Container(),
                     );
                   }

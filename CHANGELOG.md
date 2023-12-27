@@ -1,6 +1,6 @@
 ## 1.5.0
 
-* Pick Date Range, Add more convert function, Move Date Time Format.
+* Set TimePickerEntryMode.
 
 ## 1.4.0
 
