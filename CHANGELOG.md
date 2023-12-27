@@ -1,3 +1,7 @@
+## 1.6.0
+
+* Set TimePickerEntryMode.
+
 ## 1.5.0
 
 * Set TimePickerEntryMode.
