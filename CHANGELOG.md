@@ -1,3 +1,7 @@
+## 1.7.0
+
+* add more date format - MMMM yyyy, MMMEd, EE, dd MMM yyyy.
+
 ## 1.6.0
 
 * add more date format - MMMM yyyy, MMMEd, EE, dd MMM yyyy.
