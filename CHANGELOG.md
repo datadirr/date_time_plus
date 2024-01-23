@@ -1,6 +1,6 @@
 ## 1.6.0
 
-* Set TimePickerEntryMode.
+* add more date format - MMMM yyyy, MMMEd, EE, dd MMM yyyy.
 
 ## 1.5.0
 

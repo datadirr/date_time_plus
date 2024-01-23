@@ -19,9 +19,12 @@ class Format {
   static const String fMMddyyyy = "MM-dd-yyyy";
   static const String fSlashMMddyyyy = "MM/dd/yyyy";
   static const String fddMMM = "dd MMM";
+  static const String fMMMMyyyy = "MMMM yyyy";
   static const String fddMMMyyyy = "dd MMM yyyy";
+  static const String fMMMEd = "MMMEd";
   static const String fddEEEMMM = "dd EEE, MMM";
   static const String fEddMMMyyyy = "E, dd MMM yyyy";
+  static const String fEEddMMMyyyy = "EE, dd MMM yyyy";
   static const String fddEEEMMMyyyy = "dd EEE, MMM yyyy";
   static const String fEEEMMMddyyyy = "EEE, MMM dd, yyyy";
   static const String fyyyyMMddHHmmss = "yyyy-MM-dd HH:mm:ss";
