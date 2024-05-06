@@ -1,4 +1,4 @@
-## 2.1.0
+## 2.0.0
 
 * update dependencies.
 * add more date format - dd EEE, MMM, yy.
