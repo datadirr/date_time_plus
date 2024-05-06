@@ -65,6 +65,8 @@ class _DateTimePickerState extends State<DateTimePicker> {
     log(DateTimes.timeToValue(time: "12:12:12").hours.toString());
     log(DateTimes.timeToValue(time: "12:12:12").minutes.toString());
     log(DateTimes.timeToValue(time: "12:12:12").seconds.toString());
+
+    log(DateTimes.getCurrentTime());
   }
 
   @override

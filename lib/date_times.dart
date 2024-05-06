@@ -12,16 +12,19 @@ class Format {
   static const String fdd = "dd";
   static const String fMM = "MM";
   static const String fyyyy = "yyyy";
+  static const String fyy = "yy";
   static const String fyyyyMMdd = "yyyy-MM-dd";
   static const String fddMMyyyy = "dd-MM-yyyy";
   static const String fSlashddMMyyyy = "dd/MM/yyyy";
   static const String fSlashyyyyMMdd = "yyyy/MM/dd";
   static const String fMMddyyyy = "MM-dd-yyyy";
   static const String fSlashMMddyyyy = "MM/dd/yyyy";
+  static const String fMMM = "MMM";
   static const String fddMMM = "dd MMM";
   static const String fMMMMyyyy = "MMMM yyyy";
   static const String fddMMMyyyy = "dd MMM yyyy";
   static const String fMMMEd = "MMMEd";
+  static const String fddEEE = "dd EEE";
   static const String fddEEEMMM = "dd EEE, MMM";
   static const String fEddMMMyyyy = "E, dd MMM yyyy";
   static const String fEEddMMMyyyy = "EE, dd MMM yyyy";
@@ -47,6 +50,7 @@ class Format {
   static const String fhhmmpp = "hh:mm am";
   static const String fHHmm = "HH:mm";
   static const String fhhmm = "hh:mm";
+  static const String fss = "ss";
 }
 
 /// [DateTimes] class provide date and time picker functionality
@@ -56,8 +60,13 @@ class DateTimes {
   static const String _am = "am";
   static const String _pm = "pm";
 
+  /// get current datetime with format
+  static String getCurrentDateTime({String format = Format.fyyyyMMddHHmmss}) {
+    return DateFormat(format).format(DateTime.now());
+  }
+
   /// get current date with format
-  static String getCurrentDateTime({String format = Format.fyyyyMMdd}) {
+  static String getCurrentDate({String format = Format.fyyyyMMdd}) {
     return DateFormat(format).format(DateTime.now());
   }
 
@@ -211,6 +220,14 @@ class DateTimes {
     return reverseDate;
   }
 
+  /// convert string full datetime
+  static String stringFormatFullDateTime(
+      {required String date, String dateFormat = Format.fyyyyMMddHHmmss}) {
+    return DateTime.parse(
+            DateFormat(dateFormat).format(DateFormat(dateFormat).parse(date)))
+        .toString();
+  }
+
   /// start and end date of month by date
   static DateValue startAndEndDateOfMonth({String? date}) {
     DateTime dateTime =
@@ -304,7 +321,8 @@ class DateTimes {
     String minuteWithLeadingZero = leadingZero(time.minute);
 
     if (_equals(format, Format.fHHmmss)) {
-      return "$hourWithLeadingZero:$minuteWithLeadingZero:00";
+      String second = DateTimes.getCurrentDateTime(format: Format.fss);
+      return "$hourWithLeadingZero:$minuteWithLeadingZero:$second";
     } else if (_equals(format, Format.fHHmm)) {
       return "$hourWithLeadingZero:$minuteWithLeadingZero";
     } else if (_equals(format, Format.fhhmmpp)) {
