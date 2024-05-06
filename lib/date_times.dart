@@ -121,7 +121,7 @@ class DateTimes {
     String endDate = _isNullOrEmpty(toDate)
         ? getCurrentDateTime()
         : stringFormat(date: toDate!, format: format);
-    if (!validDateRange(fromDate: startDate, toDate: endDate)) {
+    if (!validDateRange(fromDateTime: startDate, toDateTime: endDate)) {
       startDate = getCurrentDateTime();
       endDate = getCurrentDateTime();
     }
@@ -189,17 +189,24 @@ class DateTimes {
 
   /// check valid date range or not
   static bool validDateRange(
-      {required String fromDate, required String toDate}) {
-    return stringToDateTime(date: fromDate)
-            .isBefore(stringToDateTime(date: toDate)) ||
-        stringToDateTime(date: fromDate)
-            .isAtSameMomentAs(stringToDateTime(date: toDate));
+      {required String fromDateTime,
+      required String toDateTime,
+      bool considerSameDateTime = true}) {
+    if (considerSameDateTime) {
+      return stringToDateTime(date: fromDateTime)
+              .isBefore(stringToDateTime(date: toDateTime)) ||
+          stringToDateTime(date: fromDateTime)
+              .isAtSameMomentAs(stringToDateTime(date: toDateTime));
+    } else {
+      return stringToDateTime(date: fromDateTime)
+          .isBefore(stringToDateTime(date: toDateTime));
+    }
   }
 
   /// set valid date from valid date range
   static String setValidDate(
       {required String fromDate, required String toDate}) {
-    if (validDateRange(fromDate: fromDate, toDate: toDate)) {
+    if (validDateRange(fromDateTime: fromDate, toDateTime: toDate)) {
       return toDate;
     } else {
       return fromDate;
@@ -244,7 +251,7 @@ class DateTimes {
       {required String fromDate, required String toDate}) {
     TimeValue timeValue = TimeValue();
     try {
-      if (validDateRange(fromDate: fromDate, toDate: toDate)) {
+      if (validDateRange(fromDateTime: fromDate, toDateTime: toDate)) {
         Duration duration = stringToDateTime(date: toDate)
             .difference(stringToDateTime(date: fromDate));
         timeValue.seconds = duration.inSeconds + (24 * 60 * 60);
