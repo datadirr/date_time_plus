@@ -1,3 +1,7 @@
+## 2.3.0
+
+* upgrade dependencies
+
 ## 2.2.0
 
 * change validDateRange function.
