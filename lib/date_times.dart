@@ -191,15 +191,16 @@ class DateTimes {
   static bool validDateRange(
       {required String fromDateTime,
       required String toDateTime,
+      String format = Format.fyyyyMMddHHmmss,
       bool considerSameDateTime = true}) {
     if (considerSameDateTime) {
-      return stringToDateTime(date: fromDateTime)
-              .isBefore(stringToDateTime(date: toDateTime)) ||
-          stringToDateTime(date: fromDateTime)
-              .isAtSameMomentAs(stringToDateTime(date: toDateTime));
+      return stringToDateTime(date: fromDateTime, format: format)
+              .isBefore(stringToDateTime(date: toDateTime, format: format)) ||
+          stringToDateTime(date: fromDateTime, format: format).isAtSameMomentAs(
+              stringToDateTime(date: toDateTime, format: format));
     } else {
-      return stringToDateTime(date: fromDateTime)
-          .isBefore(stringToDateTime(date: toDateTime));
+      return stringToDateTime(date: fromDateTime, format: format)
+          .isBefore(stringToDateTime(date: toDateTime, format: format));
     }
   }
 
