@@ -247,10 +247,16 @@ class DateTimes {
           fromDateTime: fromDateTime, toDateTime: toDateTime, format: format)) {
         Duration duration = stringToDateTime(date: toDateTime, format: format)
             .difference(stringToDateTime(date: fromDateTime, format: format));
-        timeValue.seconds = duration.inSeconds + (24 * 60 * 60);
-        timeValue.minutes = duration.inMinutes + (24 * 60);
-        timeValue.hours = duration.inHours + 24;
-        timeValue.days = duration.inDays + 1;
+
+        timeValue.inSeconds = duration.inSeconds;
+        timeValue.inMinutes = duration.inMinutes;
+        timeValue.inHours = duration.inHours;
+        timeValue.inDays = duration.inDays;
+
+        timeValue.seconds = duration.inSeconds % 60;
+        timeValue.minutes = duration.inMinutes % 60;
+        timeValue.hours = duration.inHours % 24;
+        timeValue.days = duration.inDays;
       }
     } catch (_) {}
     return timeValue;

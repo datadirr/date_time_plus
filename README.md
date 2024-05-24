@@ -69,6 +69,11 @@ DateTimes.timePicker(
 
 * Calculate days, hours, minutes, seconds by date
 ```dart
+DateTimes.calcValueByDateTime(fromDateTime: "1997-04-26 12:12:00", toDateTime: "1997-04-30 12:12:00").inDays
+DateTimes.calcValueByDateTime(fromDateTime: "1997-04-26 12:12:00", toDateTime: "1997-04-30 12:12:00").inHours
+DateTimes.calcValueByDateTime(fromDateTime: "1997-04-26 12:12:00", toDateTime: "1997-04-30 12:12:00").inMinutes
+DateTimes.calcValueByDateTime(fromDateTime: "1997-04-26 12:12:00", toDateTime: "1997-04-30 12:12:00").inSeconds
+
 DateTimes.calcValueByDateTime(fromDateTime: "1997-04-26 12:12:00", toDateTime: "1997-04-30 12:12:00").days
 DateTimes.calcValueByDateTime(fromDateTime: "1997-04-26 12:12:00", toDateTime: "1997-04-30 12:12:00").hours
 DateTimes.calcValueByDateTime(fromDateTime: "1997-04-26 12:12:00", toDateTime: "1997-04-30 12:12:00").minutes
