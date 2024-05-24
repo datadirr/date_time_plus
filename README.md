@@ -69,10 +69,10 @@ DateTimes.timePicker(
 
 * Calculate days, hours, minutes, seconds by date
 ```dart
-DateTimes.calcValueByDate(fromDateTime: "1997-04-26 12:12:00", toDateTime: "1997-04-30 12:12:00").days
-DateTimes.calcValueByDate(fromDateTime: "1997-04-26 12:12:00", toDateTime: "1997-04-30 12:12:00").hours
-DateTimes.calcValueByDate(fromDateTime: "1997-04-26 12:12:00", toDateTime: "1997-04-30 12:12:00").minutes
-DateTimes.calcValueByDate(fromDateTime: "1997-04-26 12:12:00", toDateTime: "1997-04-30 12:12:00").seconds
+DateTimes.calcValueByDateTime(fromDateTime: "1997-04-26 12:12:00", toDateTime: "1997-04-30 12:12:00").days
+DateTimes.calcValueByDateTime(fromDateTime: "1997-04-26 12:12:00", toDateTime: "1997-04-30 12:12:00").hours
+DateTimes.calcValueByDateTime(fromDateTime: "1997-04-26 12:12:00", toDateTime: "1997-04-30 12:12:00").minutes
+DateTimes.calcValueByDateTime(fromDateTime: "1997-04-26 12:12:00", toDateTime: "1997-04-30 12:12:00").seconds
 ```
 
 * Start & End Date by date of month

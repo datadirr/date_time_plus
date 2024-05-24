@@ -2,7 +2,7 @@ name: date_time_plus
 description: Pick Date and Time functions, Date and Time convert functions.
 repository: https://github.com/datadirr/date_time_plus
 homepage: https://datadirr.com
-version: 3.1.0
+version: 3.2.0
 
 environment:
   sdk: '>=2.19.6 <4.0.0'
