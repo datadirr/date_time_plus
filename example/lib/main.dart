@@ -40,19 +40,19 @@ class _DateTimePickerState extends State<DateTimePicker> {
   @override
   void initState() {
     super.initState();
-    log(DateTimes.calcValueByDate(
+    log(DateTimes.calcValueByDateTime(
             fromDateTime: "1997-04-26", toDateTime: "1997-04-30")
         .days
         .toString());
-    log(DateTimes.calcValueByDate(
+    log(DateTimes.calcValueByDateTime(
             fromDateTime: "1997-04-26", toDateTime: "1997-04-30")
         .hours
         .toString());
-    log(DateTimes.calcValueByDate(
+    log(DateTimes.calcValueByDateTime(
             fromDateTime: "1997-04-26", toDateTime: "1997-04-30")
         .minutes
         .toString());
-    log(DateTimes.calcValueByDate(
+    log(DateTimes.calcValueByDateTime(
             fromDateTime: "1997-04-26", toDateTime: "1997-04-30")
         .seconds
         .toString());

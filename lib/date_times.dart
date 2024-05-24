@@ -121,7 +121,7 @@ class DateTimes {
     String endDate = _isNullOrEmpty(toDate)
         ? getCurrentDateTime()
         : stringFormat(date: toDate!, format: format);
-    if (!validDateRange(fromDateTime: startDate, toDateTime: endDate)) {
+    if (!validDateTimeRange(fromDateTime: startDate, toDateTime: endDate)) {
       startDate = getCurrentDateTime();
       endDate = getCurrentDateTime();
     }
@@ -188,7 +188,7 @@ class DateTimes {
   }
 
   /// check valid date range or not
-  static bool validDateRange(
+  static bool validDateTimeRange(
       {required String fromDateTime,
       required String toDateTime,
       String format = Format.fyyyyMMddHHmmss,
@@ -205,11 +205,11 @@ class DateTimes {
   }
 
   /// set valid date from valid date range
-  static String setValidDate(
+  static String setValidDateTime(
       {required String fromDateTime,
       required String toDateTime,
       String format = Format.fyyyyMMddHHmmss}) {
-    if (validDateRange(
+    if (validDateTimeRange(
         fromDateTime: fromDateTime, toDateTime: toDateTime, format: format)) {
       return toDateTime;
     } else {
@@ -237,13 +237,13 @@ class DateTimes {
   }
 
   /// calculate time value by from date to to date
-  static TimeValue calcValueByDate(
+  static TimeValue calcValueByDateTime(
       {required String fromDateTime,
       required String toDateTime,
       String format = Format.fyyyyMMddHHmmss}) {
     TimeValue timeValue = TimeValue();
     try {
-      if (validDateRange(
+      if (validDateTimeRange(
           fromDateTime: fromDateTime, toDateTime: toDateTime, format: format)) {
         Duration duration = stringToDateTime(date: toDateTime, format: format)
             .difference(stringToDateTime(date: fromDateTime, format: format));
