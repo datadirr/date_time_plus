@@ -1,3 +1,7 @@
+## 3.1.0
+
+* upgrade dependencies.
+
 ## 3.0.0
 
 * remove reverseDate function, now use stringFormat function with your format.
