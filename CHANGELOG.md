@@ -1,3 +1,8 @@
+## 3.4.0
+
+* remove reverseDate function, now use stringFormat function with your format.
+* change validDateRange -> validDateTimeRange, setValidDate -> setValidDateTime, calcValueByDate -> calcValueByDateTime, stringFormatFullDateTime functions.
+
 ## 3.3.0
 
 * remove reverseDate function, now use stringFormat function with your format.
