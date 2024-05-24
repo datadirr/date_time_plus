@@ -206,33 +206,22 @@ class DateTimes {
 
   /// set valid date from valid date range
   static String setValidDate(
-      {required String fromDate, required String toDate}) {
-    if (validDateRange(fromDateTime: fromDate, toDateTime: toDate)) {
-      return toDate;
+      {required String fromDateTime,
+      required String toDateTime,
+      String format = Format.fyyyyMMddHHmmss}) {
+    if (validDateRange(
+        fromDateTime: fromDateTime, toDateTime: toDateTime, format: format)) {
+      return toDateTime;
     } else {
-      return fromDate;
+      return fromDateTime;
     }
-  }
-
-  /// convert reverse date
-  static String reverseDate(
-      {required String date, String dateFormat = Format.fyyyyMMdd}) {
-    String reverseDate = "";
-    if (_equals(dateFormat, Format.fyyyyMMdd, ignoreCase: false) &&
-        !_isNullOrEmpty(date)) {
-      var dateArray = date.split("-").toList();
-      if (dateArray.length == 3) {
-        reverseDate = "${dateArray[2]}-${dateArray[1]}-${dateArray[0]}";
-      }
-    }
-    return reverseDate;
   }
 
   /// convert string full datetime
   static String stringFormatFullDateTime(
-      {required String date, String dateFormat = Format.fyyyyMMddHHmmss}) {
+      {required String date, String format = Format.fyyyyMMddHHmmss}) {
     return DateTime.parse(
-            DateFormat(dateFormat).format(DateFormat(dateFormat).parse(date)))
+            DateFormat(format).format(DateFormat(format).parse(date)))
         .toString();
   }
 
@@ -249,12 +238,15 @@ class DateTimes {
 
   /// calculate time value by from date to to date
   static TimeValue calcValueByDate(
-      {required String fromDate, required String toDate}) {
+      {required String fromDateTime,
+      required String toDateTime,
+      String format = Format.fyyyyMMddHHmmss}) {
     TimeValue timeValue = TimeValue();
     try {
-      if (validDateRange(fromDateTime: fromDate, toDateTime: toDate)) {
-        Duration duration = stringToDateTime(date: toDate)
-            .difference(stringToDateTime(date: fromDate));
+      if (validDateRange(
+          fromDateTime: fromDateTime, toDateTime: toDateTime, format: format)) {
+        Duration duration = stringToDateTime(date: toDateTime, format: format)
+            .difference(stringToDateTime(date: fromDateTime, format: format));
         timeValue.seconds = duration.inSeconds + (24 * 60 * 60);
         timeValue.minutes = duration.inMinutes + (24 * 60);
         timeValue.hours = duration.inHours + 24;

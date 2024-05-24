@@ -40,16 +40,20 @@ class _DateTimePickerState extends State<DateTimePicker> {
   @override
   void initState() {
     super.initState();
-    log(DateTimes.calcValueByDate(fromDate: "1997-04-26", toDate: "1997-04-30")
+    log(DateTimes.calcValueByDate(
+            fromDateTime: "1997-04-26", toDateTime: "1997-04-30")
         .days
         .toString());
-    log(DateTimes.calcValueByDate(fromDate: "1997-04-26", toDate: "1997-04-30")
+    log(DateTimes.calcValueByDate(
+            fromDateTime: "1997-04-26", toDateTime: "1997-04-30")
         .hours
         .toString());
-    log(DateTimes.calcValueByDate(fromDate: "1997-04-26", toDate: "1997-04-30")
+    log(DateTimes.calcValueByDate(
+            fromDateTime: "1997-04-26", toDateTime: "1997-04-30")
         .minutes
         .toString());
-    log(DateTimes.calcValueByDate(fromDate: "1997-04-26", toDate: "1997-04-30")
+    log(DateTimes.calcValueByDate(
+            fromDateTime: "1997-04-26", toDateTime: "1997-04-30")
         .seconds
         .toString());
 
@@ -83,7 +87,8 @@ class _DateTimePickerState extends State<DateTimePicker> {
             children: [
               TextField(
                 controller: _conDate
-                  ..text = DateTimes.reverseDate(date: _selectedDate),
+                  ..text = DateTimes.stringFormat(
+                      date: _selectedDate, format: Format.fddMMyyyy),
                 readOnly: true,
                 decoration: const InputDecoration(
                     labelText: "Date", hintText: "Select Date"),
@@ -105,7 +110,7 @@ class _DateTimePickerState extends State<DateTimePicker> {
               TextField(
                 controller: _conDateRange
                   ..text =
-                      "${DateTimes.reverseDate(date: _selectedFromDate)} / ${DateTimes.reverseDate(date: _selectedToDate)}",
+                      "${DateTimes.stringFormat(date: _selectedFromDate, format: Format.fddMMyyyy)} / ${DateTimes.stringFormat(date: _selectedToDate, format: Format.fddMMyyyy)}",
                 readOnly: true,
                 decoration: const InputDecoration(
                     labelText: "Date Range", hintText: "Select Date Range"),

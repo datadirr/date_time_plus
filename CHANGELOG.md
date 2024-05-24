@@ -1,6 +1,7 @@
-## 2.3.0
+## 3.0.0
 
-* upgrade dependencies
+* remove reverseDate function, now use stringFormat function with your format.
+* change validDateRange, setValidDate, stringFormatFullDateTime, calcValueByDate functions.
 
 ## 2.2.0
 
