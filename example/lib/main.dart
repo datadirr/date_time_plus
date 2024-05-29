@@ -70,6 +70,8 @@ class _DateTimePickerState extends State<DateTimePicker> {
     log(DateTimes.timeToValue(time: "12:12:12").minutes.toString());
     log(DateTimes.timeToValue(time: "12:12:12").seconds.toString());
 
+    log(DateTimes.getCurrentDateTime());
+    log(DateTimes.getCurrentDate());
     log(DateTimes.getCurrentTime());
   }
 
@@ -87,8 +89,10 @@ class _DateTimePickerState extends State<DateTimePicker> {
             children: [
               TextField(
                 controller: _conDate
-                  ..text = DateTimes.stringFormat(
-                      date: _selectedDate, format: Format.fddMMyyyy),
+                  ..text = DateTimes.dateTimeFormat(
+                      dateTime: _selectedDate,
+                      inFormat: Format.fyyyyMMdd,
+                      outFormat: Format.fddMMyyyy),
                 readOnly: true,
                 decoration: const InputDecoration(
                     labelText: "Date", hintText: "Select Date"),
@@ -110,7 +114,7 @@ class _DateTimePickerState extends State<DateTimePicker> {
               TextField(
                 controller: _conDateRange
                   ..text =
-                      "${DateTimes.stringFormat(date: _selectedFromDate, format: Format.fddMMyyyy)} / ${DateTimes.stringFormat(date: _selectedToDate, format: Format.fddMMyyyy)}",
+                      "${DateTimes.dateTimeFormat(dateTime: _selectedFromDate, inFormat: Format.fyyyyMMdd, outFormat: Format.fddMMyyyy)} / ${DateTimes.dateTimeFormat(dateTime: _selectedToDate, inFormat: Format.fyyyyMMdd, outFormat: Format.fddMMyyyy)}",
                 readOnly: true,
                 decoration: const InputDecoration(
                     labelText: "Date Range", hintText: "Select Date Range"),
@@ -133,7 +137,10 @@ class _DateTimePickerState extends State<DateTimePicker> {
               ),
               TextField(
                 controller: _conTime
-                  ..text = DateTimes.periodTime(time: _selectedTime),
+                  ..text = DateTimes.dateTimeFormat(
+                      dateTime: _selectedTime,
+                      inFormat: Format.fHHmmss,
+                      outFormat: Format.fhhmma),
                 readOnly: true,
                 decoration: const InputDecoration(
                     labelText: "Time", hintText: "Select Time"),

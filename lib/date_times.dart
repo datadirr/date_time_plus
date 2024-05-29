@@ -34,10 +34,10 @@ class Format {
   static const String fSlashyyyyMMddHHmmss = "yyyy/MM/dd HH:mm:ss";
   static const String fddMMyyyyHHmmss = "dd-MM-yyyy HH:mm:ss";
   static const String fSlashddMMyyyyHHmmss = "dd/MM/yyyy HH:mm:ss";
-  static const String fyyyyMMddHHmmpp = "yyyy-MM-dd HH:mm am";
-  static const String fSlashyyyyMMddHHmmpp = "yyyy/MM/dd HH:mm am";
-  static const String fddMMyyyyHHmmpp = "dd-MM-yyyy HH:mm am";
-  static const String fSlashddMMyyyyHHmmpp = "dd/MM/yyyy HH:mm am";
+  static const String fyyyyMMddhhmma = "yyyy-MM-dd hh:mm a";
+  static const String fSlashyyyyMMddhhmma = "yyyy/MM/dd hh:mm a";
+  static const String fddMMyyyyhhmma = "dd-MM-yyyy HH:mm a";
+  static const String fSlashddMMyyyyhhmma = "dd/MM/yyyy hh:mm a";
   static const String fyyyyMMddHHmm = "yyyy-MM-dd HH:mm";
   static const String fSlashyyyyMMddHHmm = "yyyy/MM/dd HH:mm";
   static const String fddMMyyyyHHmm = "dd-MM-yyyy HH:mm";
@@ -47,9 +47,16 @@ class Format {
   static const String fddMMyyyyhhmm = "dd-MM-yyyy hh:mm";
   static const String fSlashddMMyyyyhhmm = "dd/MM/yyyy hh:mm";
   static const String fHHmmss = "HH:mm:ss";
-  static const String fhhmmpp = "hh:mm am";
+  static const String fhhmmss = "hh:mm:ss";
+  static const String fHHmmssa = "HH:mm:ss a";
+  static const String fhhmmssa = "hh:mm:ss a";
+  static const String fhhmma = "hh:mm a";
+  static const String fHHmma = "HH:mm a";
   static const String fHHmm = "HH:mm";
   static const String fhhmm = "hh:mm";
+  static const String fHH = "HH";
+  static const String fhh = "hh";
+  static const String fmm = "mm";
   static const String fss = "ss";
 }
 
@@ -57,8 +64,8 @@ class Format {
 class DateTimes {
   DateTimes._();
 
-  static const String _am = "am";
-  static const String _pm = "pm";
+  static const String _am = "AM";
+  static const String _pm = "PM";
 
   /// get current datetime with format
   static String getCurrentDateTime({String format = Format.fyyyyMMddHHmmss}) {
@@ -67,12 +74,12 @@ class DateTimes {
 
   /// get current date with format
   static String getCurrentDate({String format = Format.fyyyyMMdd}) {
-    return DateFormat(format).format(DateTime.now());
+    return getCurrentDateTime(format: format);
   }
 
   /// get current time with format
   static String getCurrentTime({String format = Format.fHHmmss}) {
-    return timeToString(time: TimeOfDay.now(), format: format);
+    return getCurrentDateTime(format: format);
   }
 
   /// pick date with customization
@@ -100,7 +107,8 @@ class DateTimes {
       } else {
         selectedDate = _isNullOrEmpty(date)
             ? ""
-            : stringFormat(date: date!, format: format);
+            : dateTimeFormat(
+                dateTime: date!, inFormat: format, outFormat: format);
       }
       onSelected(selectedDate);
     });
@@ -116,14 +124,17 @@ class DateTimes {
       String? maxDate,
       String format = Format.fyyyyMMdd}) {
     String startDate = _isNullOrEmpty(fromDate)
-        ? getCurrentDateTime()
-        : stringFormat(date: fromDate!, format: format);
+        ? getCurrentDate()
+        : dateTimeFormat(
+            dateTime: fromDate!, inFormat: format, outFormat: format);
     String endDate = _isNullOrEmpty(toDate)
-        ? getCurrentDateTime()
-        : stringFormat(date: toDate!, format: format);
-    if (!validDateTimeRange(fromDateTime: startDate, toDateTime: endDate)) {
-      startDate = getCurrentDateTime();
-      endDate = getCurrentDateTime();
+        ? getCurrentDate()
+        : dateTimeFormat(
+            dateTime: toDate!, inFormat: format, outFormat: format);
+    if (!validDateTimeRange(
+        fromDateTime: startDate, toDateTime: endDate, format: format)) {
+      startDate = getCurrentDate();
+      endDate = getCurrentDate();
     }
     showDateRangePicker(
         context: context,
@@ -145,19 +156,24 @@ class DateTimes {
       } else {
         fDate = _isNullOrEmpty(fromDate)
             ? ""
-            : stringFormat(date: fromDate!, format: format);
+            : dateTimeFormat(
+                dateTime: fromDate!, inFormat: format, outFormat: format);
         tDate = _isNullOrEmpty(toDate)
             ? ""
-            : stringFormat(date: toDate!, format: format);
+            : dateTimeFormat(
+                dateTime: toDate!, inFormat: format, outFormat: format);
       }
       onSelected(fDate, tDate);
     });
   }
 
   /// date by period like add days or substract days
-  static String getDateByPeriod({required String date, int days = 0}) {
+  static String getDateByPeriod(
+      {required String date, int days = 0, String format = Format.fyyyyMMdd}) {
     return dateTimeToString(
-        date: stringToDateTime(date: date).add(Duration(days: days)));
+        date: stringToDateTime(date: date, format: format)
+            .add(Duration(days: days)),
+        format: format);
   }
 
   /// convert date (DateTime to String)
@@ -172,18 +188,21 @@ class DateTimes {
     if (_isNullOrEmpty(date)) {
       return DateTime.now();
     } else {
-      return DateTime.parse(DateFormat(format).format(DateTime.parse(date)));
+      return DateFormat(format).parse(date);
     }
   }
 
   /// format date (String)
-  static String stringFormat(
-      {required String date, String format = Format.fyyyyMMdd}) {
-    if (_isNullOrEmpty(date)) {
+  static String dateTimeFormat(
+      {required String dateTime,
+      String inFormat = Format.fyyyyMMdd,
+      String outFormat = Format.fyyyyMMdd}) {
+    if (_isNullOrEmpty(dateTime)) {
       return "";
     } else {
       return dateTimeToString(
-          date: stringToDateTime(date: date), format: format);
+          date: stringToDateTime(date: dateTime, format: inFormat),
+          format: outFormat);
     }
   }
 
@@ -191,7 +210,7 @@ class DateTimes {
   static bool validDateTimeRange(
       {required String fromDateTime,
       required String toDateTime,
-      String format = Format.fyyyyMMddHHmmss,
+      String format = Format.fyyyyMMdd,
       bool considerSameDateTime = true}) {
     if (considerSameDateTime) {
       return stringToDateTime(date: fromDateTime, format: format)
@@ -208,21 +227,13 @@ class DateTimes {
   static String setValidDateTime(
       {required String fromDateTime,
       required String toDateTime,
-      String format = Format.fyyyyMMddHHmmss}) {
+      String format = Format.fyyyyMMdd}) {
     if (validDateTimeRange(
         fromDateTime: fromDateTime, toDateTime: toDateTime, format: format)) {
       return toDateTime;
     } else {
       return fromDateTime;
     }
-  }
-
-  /// convert string full datetime
-  static String stringFormatFullDateTime(
-      {required String date, String format = Format.fyyyyMMddHHmmss}) {
-    return DateTime.parse(
-            DateFormat(format).format(DateFormat(format).parse(date)))
-        .toString();
   }
 
   /// start and end date of month by date
@@ -303,9 +314,9 @@ class DateTimes {
     } else {
       int hour = TimeOfDay.now().hour;
       int minute = TimeOfDay.now().minute;
-      if (time!.toLowerCase().contains(_am) ||
-          time.toLowerCase().contains(_pm)) {
-        if (time.toLowerCase().contains(_pm)) {
+      if (time!.toUpperCase().contains(_am) ||
+          time.toUpperCase().contains(_pm)) {
+        if (time.toUpperCase().contains(_pm)) {
           hour = (int.parse((time.split(' ')[0]).split(':')[0])) + 12;
         } else {
           hour = (int.parse((time.split(' ')[0]).split(':')[0]));
@@ -331,7 +342,7 @@ class DateTimes {
       return "$hourWithLeadingZero:$minuteWithLeadingZero:$second";
     } else if (_equals(format, Format.fHHmm)) {
       return "$hourWithLeadingZero:$minuteWithLeadingZero";
-    } else if (_equals(format, Format.fhhmmpp)) {
+    } else if (_equals(format, Format.fHHmma)) {
       if (hour > 12) {
         hour -= 12;
         hourWithLeadingZero = leadingZero(hour);
@@ -343,16 +354,6 @@ class DateTimes {
       return "$hourWithLeadingZero:$minuteWithLeadingZero ${time.period.name.toUpperCase()}";
     } else {
       return "";
-    }
-  }
-
-  /// get time with format
-  static String periodTime(
-      {required String time, String format = Format.fhhmmpp}) {
-    if (_isNullOrEmpty(time)) {
-      return "";
-    } else {
-      return timeToString(time: stringToTime(time: time), format: format);
     }
   }
 

@@ -35,6 +35,13 @@ Please follow this [example](https://github.com/datadirr/date_time_plus/tree/mas
 
 1. Use DateTimes.datePicker or DateTimes.timePicker function
 
+* Date Time
+```dart
+DateTimes.getCurrentDateTime()
+DateTimes.getCurrentDate()
+DateTimes.getCurrentTime()
+```
+
 * Date Picker
 ```dart
 DateTimes.datePicker(
@@ -42,7 +49,7 @@ DateTimes.datePicker(
   date: "1997-04-26",
   onSelected: (date) {
     log(date);
-});
+})
 ```
 
 * Date Range Picker
@@ -53,7 +60,7 @@ DateTimes.dateRangePicker(
   toDate: "1997-04-30",
   onSelected: (fromDate, toDate) {
     log("$fromDate / $toDate");
-});
+})
 ```
 
 * Time Picker
@@ -63,7 +70,7 @@ DateTimes.timePicker(
   time: "12:12:00",
   onSelected: (time) {
     log(time);
-});
+})
 ```
 
 
