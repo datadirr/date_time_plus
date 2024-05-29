@@ -1,3 +1,10 @@
+## 4.1.0
+
+* remove reverseDate, periodTime function, now use dateTimeFormat function with your format.
+* change validDateRange -> validDateTimeRange, setValidDate -> setValidDateTime, calcValueByDate -> calcValueByDateTime functions.
+* remove stringFormatFullDateTime function.
+* change date time format and add more.
+
 ## 4.0.0
 
 * remove reverseDate, periodTime function, now use dateTimeFormat function with your format.
