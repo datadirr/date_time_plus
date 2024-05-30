@@ -1,6 +1,11 @@
-## 5.1.0
+## 6.0.0
 
-* Upgrade dependencies
+* change README.md.
+* change timer, timeToValue function.
+* remove reverseDate, periodTime function, now use dateTimeFormat function with your format.
+* change validDateRange -> validDateTimeRange, setValidDate -> setValidDateTime, calcValueByDate -> calcValueByDateTime functions.
+* remove stringFormatFullDateTime function.
+* change date time format and add more.
 
 ## 5.0.0
 

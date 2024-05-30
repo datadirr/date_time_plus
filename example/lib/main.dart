@@ -148,7 +148,7 @@ class _DateTimePickerState extends State<DateTimePicker> {
                   DateTimes.timePicker(
                       context: context,
                       time: _selectedTime,
-                      hasSeconds: true,
+                      hasSeconds: false,
                       onSelected: (time) {
                         log(time);
                         setState(() {

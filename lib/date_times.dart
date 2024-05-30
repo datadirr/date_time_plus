@@ -301,7 +301,13 @@ class DateTimes {
       if (value != null) {
         selectedTime = timeOfDayToString(time: value, hasSeconds: hasSeconds);
       } else {
-        selectedTime = _isNullOrEmpty(time) ? "" : time!;
+        selectedTime = _isNullOrEmpty(time)
+            ? ""
+            : hasSeconds
+                ? time!
+                : timeOfDayToString(
+                    time: stringToTimeOfDay(time: time),
+                    hasSeconds: hasSeconds);
       }
       onSelected(selectedTime);
     });
