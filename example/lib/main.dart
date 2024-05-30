@@ -60,15 +60,15 @@ class _DateTimePickerState extends State<DateTimePicker> {
     log(DateTimes.startAndEndDateOfMonth(date: "1997-04-26").startDate);
     log(DateTimes.startAndEndDateOfMonth(date: "1997-04-26").endDate);
 
-    log(DateTimes.timer(seconds: 1200).days.toString());
-    log(DateTimes.timer(seconds: 1200).hours.toString());
-    log(DateTimes.timer(seconds: 1200).minutes.toString());
-    log(DateTimes.timer(seconds: 1200).seconds.toString());
+    log(DateTimes.timer(seconds: 1200).inDays.toString());
+    log(DateTimes.timer(seconds: 1200).inHours.toString());
+    log(DateTimes.timer(seconds: 1200).inMinutes.toString());
+    log(DateTimes.timer(seconds: 1200).inSeconds.toString());
 
-    log(DateTimes.timeToValue(time: "12:12:12").days.toString());
-    log(DateTimes.timeToValue(time: "12:12:12").hours.toString());
-    log(DateTimes.timeToValue(time: "12:12:12").minutes.toString());
-    log(DateTimes.timeToValue(time: "12:12:12").seconds.toString());
+    log(DateTimes.timeToValue(time: "12:12:12").inDays.toString());
+    log(DateTimes.timeToValue(time: "12:12:12").inHours.toString());
+    log(DateTimes.timeToValue(time: "12:12:12").inMinutes.toString());
+    log(DateTimes.timeToValue(time: "12:12:12").inSeconds.toString());
 
     log(DateTimes.getCurrentDateTime());
     log(DateTimes.getCurrentDate());
@@ -148,6 +148,7 @@ class _DateTimePickerState extends State<DateTimePicker> {
                   DateTimes.timePicker(
                       context: context,
                       time: _selectedTime,
+                      hasSeconds: true,
                       onSelected: (time) {
                         log(time);
                         setState(() {

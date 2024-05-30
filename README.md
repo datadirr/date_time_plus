@@ -95,17 +95,17 @@ DateTimes.startAndEndDateOfMonth(date: "1997-04-26").endDate
 
 * Convert total seconds to time value (days, hours, minutes, seconds) (timer)
 ```dart
-DateTimes.timer(seconds: 1200).days
-DateTimes.timer(seconds: 1200).hours
-DateTimes.timer(seconds: 1200).minutes
-DateTimes.timer(seconds: 1200).seconds
+DateTimes.timer(seconds: 1200).inDays
+DateTimes.timer(seconds: 1200).inHours
+DateTimes.timer(seconds: 1200).inMinutes
+DateTimes.timer(seconds: 1200).inSeconds
 ```
 
 * Convert time to time value (days, hours, minutes, seconds)
 ```dart
-DateTimes.timeToValue(time: "12:12:12").days
-DateTimes.timeToValue(time: "12:12:12").hours
-DateTimes.timeToValue(time: "12:12:12").minutes
-DateTimes.timeToValue(time: "12:12:12").seconds
+DateTimes.timeToValue(time: "12:12:12").inDays
+DateTimes.timeToValue(time: "12:12:12").inHours
+DateTimes.timeToValue(time: "12:12:12").inMinutes
+DateTimes.timeToValue(time: "12:12:12").inSeconds
 ```
 

@@ -28,6 +28,7 @@ class Format {
   static const String fddEEEMMM = "dd EEE, MMM";
   static const String fEddMMMyyyy = "E, dd MMM yyyy";
   static const String fEEddMMMyyyy = "EE, dd MMM yyyy";
+  static const String fEEEddMMMyyyy = "EEE, dd MMM yyyy";
   static const String fddEEEMMMyyyy = "dd EEE, MMM yyyy";
   static const String fEEEMMMddyyyy = "EEE, MMM dd, yyyy";
   static const String fyyyyMMddHHmmss = "yyyy-MM-dd HH:mm:ss";
@@ -63,9 +64,6 @@ class Format {
 /// [DateTimes] class provide date and time picker functionality
 class DateTimes {
   DateTimes._();
-
-  static const String _am = "AM";
-  static const String _pm = "PM";
 
   /// get current datetime with format
   static String getCurrentDateTime({String format = Format.fyyyyMMddHHmmss}) {
@@ -274,6 +272,7 @@ class DateTimes {
   }
 
   /// pick time with customization
+  /// time [HH:mm:ss]
   static timePicker(
       {required BuildContext context,
       required Function(String time) onSelected,
@@ -281,10 +280,11 @@ class DateTimes {
       String? minTime,
       String? maxTime,
       bool format24Hours = false,
+      bool hasSeconds = false,
       TimePickerEntryMode timePickerEntryMode = TimePickerEntryMode.dial}) {
     showTimePicker(
             context: context,
-            initialTime: stringToTime(time: time),
+            initialTime: stringToTimeOfDay(time: time),
             initialEntryMode: timePickerEntryMode,
             builder: format24Hours
                 ? (context, child) {
@@ -299,7 +299,7 @@ class DateTimes {
         .then((value) {
       String selectedTime = "";
       if (value != null) {
-        selectedTime = timeToString(time: value);
+        selectedTime = timeOfDayToString(time: value, hasSeconds: hasSeconds);
       } else {
         selectedTime = _isNullOrEmpty(time) ? "" : time!;
       }
@@ -308,84 +308,79 @@ class DateTimes {
   }
 
   /// convert time (String to TimeOfDay)
-  static TimeOfDay stringToTime({required String? time}) {
-    if (_isNullOrEmpty(time)) {
-      return TimeOfDay.now();
-    } else {
-      int hour = TimeOfDay.now().hour;
-      int minute = TimeOfDay.now().minute;
-      if (time!.toUpperCase().contains(_am) ||
-          time.toUpperCase().contains(_pm)) {
-        if (time.toUpperCase().contains(_pm)) {
-          hour = (int.parse((time.split(' ')[0]).split(':')[0])) + 12;
-        } else {
-          hour = (int.parse((time.split(' ')[0]).split(':')[0]));
-        }
-        minute = int.parse((time.split(' ')[0]).split(':')[1]);
+  static TimeOfDay stringToTimeOfDay({required String? time}) {
+    try {
+      if (_isNullOrEmpty(time)) {
+        return TimeOfDay.now();
       } else {
-        hour = int.parse((time.split(' ')[0]).split(':')[0]);
-        minute = int.parse((time.split(' ')[0]).split(':')[1]);
+        int hour = TimeOfDay.now().hour;
+        int minute = TimeOfDay.now().minute;
+        List<String> timeArray = time!.split(":");
+        if (timeArray.length > 1) {
+          hour = int.parse(timeArray[0]);
+          minute = int.parse(timeArray[1]);
+        }
+        return TimeOfDay(hour: hour, minute: minute);
       }
-      return TimeOfDay(hour: hour, minute: minute);
+    } catch (_) {
+      return TimeOfDay.now();
     }
   }
 
   /// convert time (TimeOfDay to String)
-  static String timeToString(
-      {required TimeOfDay time, String format = Format.fHHmmss}) {
+  static String timeOfDayToString(
+      {required TimeOfDay time,
+      bool hasSeconds = true,
+      String format = Format.fHHmmss}) {
     int hour = time.hour;
     String hourWithLeadingZero = leadingZero(hour);
     String minuteWithLeadingZero = leadingZero(time.minute);
 
-    if (_equals(format, Format.fHHmmss)) {
+    if (hasSeconds) {
       String second = DateTimes.getCurrentDateTime(format: Format.fss);
       return "$hourWithLeadingZero:$minuteWithLeadingZero:$second";
-    } else if (_equals(format, Format.fHHmm)) {
-      return "$hourWithLeadingZero:$minuteWithLeadingZero";
-    } else if (_equals(format, Format.fHHmma)) {
-      if (hour > 12) {
-        hour -= 12;
-        hourWithLeadingZero = leadingZero(hour);
-      }
-      if (hour == 0) {
-        hour = 12;
-        hourWithLeadingZero = leadingZero(hour);
-      }
-      return "$hourWithLeadingZero:$minuteWithLeadingZero ${time.period.name.toUpperCase()}";
     } else {
-      return "";
+      return "$hourWithLeadingZero:$minuteWithLeadingZero:00";
     }
   }
 
   /// convert total second to time value [seconds, minutes, hours, days]
   static TimeValue timer({required int seconds}) {
     TimeValue timeValue = TimeValue();
-    timeValue.days = seconds ~/ (24 * 3600);
+    Duration duration = Duration(seconds: seconds);
 
-    seconds = seconds % (24 * 3600);
-    timeValue.hours = seconds ~/ 3600;
+    timeValue.inSeconds = duration.inSeconds;
+    timeValue.inMinutes = duration.inMinutes;
+    timeValue.inHours = duration.inHours;
+    timeValue.inDays = duration.inDays;
 
-    seconds %= 3600;
-    timeValue.minutes = seconds ~/ 60;
-
-    seconds %= 60;
-    timeValue.seconds = seconds;
+    timeValue.seconds = duration.inSeconds % 60;
+    timeValue.minutes = duration.inMinutes % 60;
+    timeValue.hours = duration.inHours % 24;
+    timeValue.days = duration.inDays;
 
     return timeValue;
   }
 
   /// convert time to value [seconds, minutes, hours, days]
+  /// time [HH:mm:ss]
   static TimeValue timeToValue({required String time}) {
     TimeValue timeValue = TimeValue();
     List<String> timeArray = time.split(":");
-    if (timeArray.length == 3) {
+    if (timeArray.length > 2) {
       Duration duration = Duration(
           hours: _parseInt(timeArray[0]),
           minutes: _parseInt(timeArray[1]),
           seconds: _parseInt(timeArray[2]));
-      timeValue.seconds = duration.inSeconds;
-      timeValue.minutes = duration.inMinutes;
-      timeValue.hours = duration.inHours;
+
+      timeValue.inSeconds = duration.inSeconds;
+      timeValue.inMinutes = duration.inMinutes;
+      timeValue.inHours = duration.inHours;
+      timeValue.inDays = duration.inDays;
+
+      timeValue.seconds = duration.inSeconds % 60;
+      timeValue.minutes = duration.inMinutes % 60;
+      timeValue.hours = duration.inHours % 24;
       timeValue.days = duration.inDays;
     }
     return timeValue;
