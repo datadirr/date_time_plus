@@ -1,3 +1,7 @@
+## 6.1.0
+
+* Upgrade dependencies.
+
 ## 6.0.0
 
 * change README.md.
