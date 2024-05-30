@@ -1,5 +1,6 @@
 ## 5.0.0
 
+* change README.md.
 * change timer, timeToValue function.
 * remove reverseDate, periodTime function, now use dateTimeFormat function with your format.
 * change validDateRange -> validDateTimeRange, setValidDate -> setValidDateTime, calcValueByDate -> calcValueByDateTime functions.
