@@ -1,3 +1,7 @@
+## 6.2.0
+
+* upgrade dependencies.
+
 ## 6.1.0
 
 * Add namespace for android.
