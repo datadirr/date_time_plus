@@ -89,7 +89,7 @@ class _DateTimePickerState extends State<DateTimePicker> {
             children: [
               TextField(
                 controller: _conDate
-                  ..text = DateTimes.dateTimeFormat(
+                  ..text = DateTimes.formatDateTime(
                       dateTime: _selectedDate,
                       inFormat: Format.fyyyyMMdd,
                       outFormat: Format.fddMMyyyy),
@@ -114,7 +114,7 @@ class _DateTimePickerState extends State<DateTimePicker> {
               TextField(
                 controller: _conDateRange
                   ..text =
-                      "${DateTimes.dateTimeFormat(dateTime: _selectedFromDate, inFormat: Format.fyyyyMMdd, outFormat: Format.fddMMyyyy)} / ${DateTimes.dateTimeFormat(dateTime: _selectedToDate, inFormat: Format.fyyyyMMdd, outFormat: Format.fddMMyyyy)}",
+                      "${DateTimes.formatDateTime(dateTime: _selectedFromDate, inFormat: Format.fyyyyMMdd, outFormat: Format.fddMMyyyy)} / ${DateTimes.formatDateTime(dateTime: _selectedToDate, inFormat: Format.fyyyyMMdd, outFormat: Format.fddMMyyyy)}",
                 readOnly: true,
                 decoration: const InputDecoration(
                     labelText: "Date Range", hintText: "Select Date Range"),
@@ -137,7 +137,7 @@ class _DateTimePickerState extends State<DateTimePicker> {
               ),
               TextField(
                 controller: _conTime
-                  ..text = DateTimes.dateTimeFormat(
+                  ..text = DateTimes.formatDateTime(
                       dateTime: _selectedTime,
                       inFormat: Format.fHHmmss,
                       outFormat: Format.fhhmma),

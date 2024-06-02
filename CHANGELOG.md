@@ -1,6 +1,6 @@
-## 6.2.0
+## 7.0.0
 
-* upgrade dependencies.
+* change dateTimeFormat -> formatDateTime function.
 
 ## 6.1.0
 

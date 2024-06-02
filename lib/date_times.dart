@@ -105,7 +105,7 @@ class DateTimes {
       } else {
         selectedDate = _isNullOrEmpty(date)
             ? ""
-            : dateTimeFormat(
+            : formatDateTime(
                 dateTime: date!, inFormat: format, outFormat: format);
       }
       onSelected(selectedDate);
@@ -123,11 +123,11 @@ class DateTimes {
       String format = Format.fyyyyMMdd}) {
     String startDate = _isNullOrEmpty(fromDate)
         ? getCurrentDate()
-        : dateTimeFormat(
+        : formatDateTime(
             dateTime: fromDate!, inFormat: format, outFormat: format);
     String endDate = _isNullOrEmpty(toDate)
         ? getCurrentDate()
-        : dateTimeFormat(
+        : formatDateTime(
             dateTime: toDate!, inFormat: format, outFormat: format);
     if (!validDateTimeRange(
         fromDateTime: startDate, toDateTime: endDate, format: format)) {
@@ -154,11 +154,11 @@ class DateTimes {
       } else {
         fDate = _isNullOrEmpty(fromDate)
             ? ""
-            : dateTimeFormat(
+            : formatDateTime(
                 dateTime: fromDate!, inFormat: format, outFormat: format);
         tDate = _isNullOrEmpty(toDate)
             ? ""
-            : dateTimeFormat(
+            : formatDateTime(
                 dateTime: toDate!, inFormat: format, outFormat: format);
       }
       onSelected(fDate, tDate);
@@ -190,8 +190,8 @@ class DateTimes {
     }
   }
 
-  /// format date (String)
-  static String dateTimeFormat(
+  /// format date and time (String)
+  static String formatDateTime(
       {required String dateTime,
       String inFormat = Format.fyyyyMMdd,
       String outFormat = Format.fyyyyMMdd}) {
