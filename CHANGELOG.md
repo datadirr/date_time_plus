@@ -1,3 +1,7 @@
+## 7.2.0
+
+* default format24Hours = true in timePicker
+
 ## 7.1.0
 
 * default format24Hours = true in timePicker
