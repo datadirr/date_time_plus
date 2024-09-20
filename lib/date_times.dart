@@ -279,24 +279,21 @@ class DateTimes {
       String? time,
       String? minTime,
       String? maxTime,
-      bool format24Hours = false,
+      bool format24Hours = true,
       bool hasSeconds = false,
       TimePickerEntryMode timePickerEntryMode = TimePickerEntryMode.dial}) {
     showTimePicker(
-            context: context,
-            initialTime: stringToTimeOfDay(time: time),
-            initialEntryMode: timePickerEntryMode,
-            builder: format24Hours
-                ? (context, child) {
-                    return MediaQuery(
-                      data: MediaQuery.of(context).copyWith(
-                        alwaysUse24HourFormat: true,
-                      ),
-                      child: child ?? Container(),
-                    );
-                  }
-                : null)
-        .then((value) {
+        context: context,
+        initialTime: stringToTimeOfDay(time: time),
+        initialEntryMode: timePickerEntryMode,
+        builder: (context, child) {
+          return MediaQuery(
+            data: MediaQuery.of(context).copyWith(
+              alwaysUse24HourFormat: format24Hours,
+            ),
+            child: child ?? Container(),
+          );
+        }).then((value) {
       String selectedTime = "";
       if (value != null) {
         selectedTime = timeOfDayToString(time: value, hasSeconds: hasSeconds);

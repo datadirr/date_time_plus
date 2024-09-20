@@ -1,6 +1,6 @@
 ## 7.1.0
 
-* upgrade dependencies.
+* default format24Hours = true in timePicker
 
 ## 7.0.0
 
