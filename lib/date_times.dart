@@ -279,7 +279,7 @@ class DateTimes {
       String? time,
       String? minTime,
       String? maxTime,
-      bool format24Hours = true,
+      bool format12Hours = false,
       bool hasSeconds = false,
       TimePickerEntryMode timePickerEntryMode = TimePickerEntryMode.dial}) {
     showTimePicker(
@@ -289,9 +289,13 @@ class DateTimes {
         builder: (context, child) {
           return MediaQuery(
             data: MediaQuery.of(context).copyWith(
-              alwaysUse24HourFormat: format24Hours,
+              alwaysUse24HourFormat: !format12Hours,
             ),
-            child: child ?? Container(),
+            child: Localizations.override(
+              context: context,
+              locale: const Locale('en', 'US'),
+              child: child ?? Container(),
+            ),
           );
         }).then((value) {
       String selectedTime = "";
