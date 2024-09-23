@@ -1,3 +1,7 @@
+## 7.3.0
+
+* change format24Hours -> format12Hours in timePicker
+
 ## 7.2.0
 
 * change format24Hours -> format12Hours in timePicker
