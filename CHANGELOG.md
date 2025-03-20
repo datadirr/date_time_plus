@@ -1,3 +1,7 @@
+## 8.1.0
+
+* Upgrade dependencies.
+
 ## 8.0.0
 
 * Upgrade dependencies.
