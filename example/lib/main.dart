@@ -7,7 +7,7 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -17,12 +17,14 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-        debugShowCheckedModeBanner: false, home: DateTimePicker());
+      debugShowCheckedModeBanner: false,
+      home: DateTimePicker(),
+    );
   }
 }
 
 class DateTimePicker extends StatefulWidget {
-  const DateTimePicker({Key? key}) : super(key: key);
+  const DateTimePicker({super.key});
 
   @override
   State<DateTimePicker> createState() => _DateTimePickerState();
@@ -40,22 +42,30 @@ class _DateTimePickerState extends State<DateTimePicker> {
   @override
   void initState() {
     super.initState();
-    log(DateTimes.calcValueByDateTime(
-            fromDateTime: "1997-04-26", toDateTime: "1997-04-30")
-        .days
-        .toString());
-    log(DateTimes.calcValueByDateTime(
-            fromDateTime: "1997-04-26", toDateTime: "1997-04-30")
-        .hours
-        .toString());
-    log(DateTimes.calcValueByDateTime(
-            fromDateTime: "1997-04-26", toDateTime: "1997-04-30")
-        .minutes
-        .toString());
-    log(DateTimes.calcValueByDateTime(
-            fromDateTime: "1997-04-26", toDateTime: "1997-04-30")
-        .seconds
-        .toString());
+    log(
+      DateTimes.calcValueByDateTime(
+        fromDateTime: "1997-04-26",
+        toDateTime: "1997-04-30",
+      ).days.toString(),
+    );
+    log(
+      DateTimes.calcValueByDateTime(
+        fromDateTime: "1997-04-26",
+        toDateTime: "1997-04-30",
+      ).hours.toString(),
+    );
+    log(
+      DateTimes.calcValueByDateTime(
+        fromDateTime: "1997-04-26",
+        toDateTime: "1997-04-30",
+      ).minutes.toString(),
+    );
+    log(
+      DateTimes.calcValueByDateTime(
+        fromDateTime: "1997-04-26",
+        toDateTime: "1997-04-30",
+      ).seconds.toString(),
+    );
 
     log(DateTimes.startAndEndDateOfMonth(date: "1997-04-26").startDate);
     log(DateTimes.startAndEndDateOfMonth(date: "1997-04-26").endDate);
@@ -78,26 +88,28 @@ class _DateTimePickerState extends State<DateTimePicker> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("date_time_plus"),
-      ),
+      appBar: AppBar(title: const Text("date_time_plus")),
       body: SafeArea(
-          child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              TextField(
-                controller: _conDate
-                  ..text = DateTimes.formatDateTime(
-                      dateTime: _selectedDate,
-                      inFormat: Format.fyyyyMMdd,
-                      outFormat: Format.fddMMyyyy),
-                readOnly: true,
-                decoration: const InputDecoration(
-                    labelText: "Date", hintText: "Select Date"),
-                onTap: () {
-                  DateTimes.datePicker(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              children: [
+                TextField(
+                  controller:
+                      _conDate
+                        ..text = DateTimes.formatDateTime(
+                          dateTime: _selectedDate,
+                          inFormat: Format.fyyyyMMdd,
+                          outFormat: Format.fddMMyyyy,
+                        ),
+                  readOnly: true,
+                  decoration: const InputDecoration(
+                    labelText: "Date",
+                    hintText: "Select Date",
+                  ),
+                  onTap: () {
+                    DateTimes.datePicker(
                       context: context,
                       date: _selectedDate,
                       onSelected: (date) {
@@ -105,21 +117,23 @@ class _DateTimePickerState extends State<DateTimePicker> {
                         setState(() {
                           _selectedDate = date;
                         });
-                      });
-                },
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              TextField(
-                controller: _conDateRange
-                  ..text =
-                      "${DateTimes.formatDateTime(dateTime: _selectedFromDate, inFormat: Format.fyyyyMMdd, outFormat: Format.fddMMyyyy)} / ${DateTimes.formatDateTime(dateTime: _selectedToDate, inFormat: Format.fyyyyMMdd, outFormat: Format.fddMMyyyy)}",
-                readOnly: true,
-                decoration: const InputDecoration(
-                    labelText: "Date Range", hintText: "Select Date Range"),
-                onTap: () {
-                  DateTimes.dateRangePicker(
+                      },
+                    );
+                  },
+                ),
+                const SizedBox(height: 20),
+                TextField(
+                  controller:
+                      _conDateRange
+                        ..text =
+                            "${DateTimes.formatDateTime(dateTime: _selectedFromDate, inFormat: Format.fyyyyMMdd, outFormat: Format.fddMMyyyy)} / ${DateTimes.formatDateTime(dateTime: _selectedToDate, inFormat: Format.fyyyyMMdd, outFormat: Format.fddMMyyyy)}",
+                  readOnly: true,
+                  decoration: const InputDecoration(
+                    labelText: "Date Range",
+                    hintText: "Select Date Range",
+                  ),
+                  onTap: () {
+                    DateTimes.dateRangePicker(
                       context: context,
                       fromDate: _selectedFromDate,
                       toDate: _selectedToDate,
@@ -129,23 +143,26 @@ class _DateTimePickerState extends State<DateTimePicker> {
                           _selectedFromDate = fromDate;
                           _selectedToDate = toDate;
                         });
-                      });
-                },
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              TextField(
-                controller: _conTime
-                  ..text = DateTimes.formatDateTime(
-                      dateTime: _selectedTime,
-                      inFormat: Format.fHHmmss,
-                      outFormat: Format.fhhmma),
-                readOnly: true,
-                decoration: const InputDecoration(
-                    labelText: "Time", hintText: "Select Time"),
-                onTap: () {
-                  DateTimes.timePicker(
+                      },
+                    );
+                  },
+                ),
+                const SizedBox(height: 20),
+                TextField(
+                  controller:
+                      _conTime
+                        ..text = DateTimes.formatDateTime(
+                          dateTime: _selectedTime,
+                          inFormat: Format.fHHmmss,
+                          outFormat: Format.fhhmma,
+                        ),
+                  readOnly: true,
+                  decoration: const InputDecoration(
+                    labelText: "Time",
+                    hintText: "Select Time",
+                  ),
+                  onTap: () {
+                    DateTimes.timePicker(
                       context: context,
                       time: _selectedTime,
                       hasSeconds: false,
@@ -154,13 +171,15 @@ class _DateTimePickerState extends State<DateTimePicker> {
                         setState(() {
                           _selectedTime = time;
                         });
-                      });
-                },
-              )
-            ],
+                      },
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
         ),
-      )),
+      ),
     );
   }
 }

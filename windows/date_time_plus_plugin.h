@@ -20,7 +20,6 @@ class DateTimePlusPlugin : public flutter::Plugin {
   DateTimePlusPlugin(const DateTimePlusPlugin&) = delete;
   DateTimePlusPlugin& operator=(const DateTimePlusPlugin&) = delete;
 
- private:
   // Called when a method is called on this plugin's channel from Dart.
   void HandleMethodCall(
       const flutter::MethodCall<flutter::EncodableValue> &method_call,

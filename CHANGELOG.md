@@ -1,10 +1,10 @@
-## 7.3.0
+## 8.0.0
 
-* change format24Hours -> format12Hours in timePicker
+* Upgrade dependencies.
 
 ## 7.2.0
 
-* change format24Hours -> format12Hours in timePicker
+* default format24Hours = true in timePicker
 
 ## 7.1.0
 

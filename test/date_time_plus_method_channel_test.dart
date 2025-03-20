@@ -3,19 +3,16 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:date_time_plus/date_time_plus_method_channel.dart';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
   MethodChannelDateTimePlus platform = MethodChannelDateTimePlus();
   const MethodChannel channel = MethodChannel('date_time_plus');
 
-  TestWidgetsFlutterBinding.ensureInitialized();
-
   setUp(() {
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-        .setMockMethodCallHandler(
-      channel,
-      (MethodCall methodCall) async {
-        return '42';
-      },
-    );
+        .setMockMethodCallHandler(channel, (MethodCall methodCall) async {
+          return '42';
+        });
   });
 
   tearDown(() {
