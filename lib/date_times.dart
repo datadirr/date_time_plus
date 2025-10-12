@@ -81,7 +81,7 @@ class DateTimes {
   }
 
   /// pick date with customization
-  static datePicker({
+  static void datePicker({
     required BuildContext context,
     required Function(String date) onSelected,
     String? date,
@@ -120,7 +120,7 @@ class DateTimes {
   }
 
   /// pick date range with customization
-  static dateRangePicker({
+  static void dateRangePicker({
     required BuildContext context,
     required Function(String fromDate, String toDate) onSelected,
     String? fromDate,
@@ -334,7 +334,7 @@ class DateTimes {
 
   /// pick time with customization
   /// time [HH:mm:ss]
-  static timePicker({
+  static void timePicker({
     required BuildContext context,
     required Function(String time) onSelected,
     String? time,
