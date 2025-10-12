@@ -1,3 +1,7 @@
+## 9.1.0
+
+* Upgrade dependencies.
+
 ## 9.0.0
 
 * Upgrade dependencies.
