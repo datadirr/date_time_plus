@@ -1,3 +1,7 @@
+## 9.2.0
+
+* Upgrade dependencies.
+
 ## 9.1.0
 
 * add a function "getDateFromDay"
