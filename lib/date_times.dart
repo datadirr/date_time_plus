@@ -23,6 +23,7 @@ class Format {
   static const String fddMMM = "dd MMM";
   static const String fMMMMyyyy = "MMMM yyyy";
   static const String fddMMMyyyy = "dd MMM yyyy";
+  static const String fddMMMyy = "dd MMM yy";
   static const String fMMMEd = "MMMEd";
   static const String fddEEE = "dd EEE";
   static const String fddEEEMMM = "dd EEE, MMM";
@@ -458,6 +459,20 @@ class DateTimes {
       timeValue.days = duration.inDays;
     }
     return timeValue;
+  }
+
+  /// get date from day
+  static String? getDateFromDay({
+    required int dayOfMonth,
+    String format = Format.fyyyyMMdd,
+  }) {
+    final now = DateTime.now();
+
+    // The DateTime constructor handles year/month/day
+    // Note: If you pass a day invalid for the month (e.g., Feb 30),
+    // Dart wraps it into the next month automatically.
+    DateTime date = DateTime(now.year, now.month, dayOfMonth);
+    return DateFormat(format).format(date);
   }
 
   /// set int value with leading zero
