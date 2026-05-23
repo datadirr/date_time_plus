@@ -92,29 +92,27 @@ class DateTimes {
   }) {
     showDatePicker(
       context: context,
-      initialDate:
-          _isNullOrEmpty(date) ? DateTime.now() : stringToDateTime(date: date!),
-      firstDate:
-          _isNullOrEmpty(minDate)
-              ? DateTime(1950)
-              : stringToDateTime(date: minDate!),
-      lastDate:
-          _isNullOrEmpty(maxDate)
-              ? DateTime(3000)
-              : stringToDateTime(date: maxDate!),
+      initialDate: _isNullOrEmpty(date)
+          ? DateTime.now()
+          : stringToDateTime(date: date!),
+      firstDate: _isNullOrEmpty(minDate)
+          ? DateTime(1950)
+          : stringToDateTime(date: minDate!),
+      lastDate: _isNullOrEmpty(maxDate)
+          ? DateTime(3000)
+          : stringToDateTime(date: maxDate!),
     ).then((value) {
       String selectedDate = "";
       if (value != null) {
         selectedDate = dateTimeToString(date: value, format: format);
       } else {
-        selectedDate =
-            _isNullOrEmpty(date)
-                ? ""
-                : formatDateTime(
-                  dateTime: date!,
-                  inFormat: format,
-                  outFormat: format,
-                );
+        selectedDate = _isNullOrEmpty(date)
+            ? ""
+            : formatDateTime(
+                dateTime: date!,
+                inFormat: format,
+                outFormat: format,
+              );
       }
       onSelected(selectedDate);
     });
@@ -130,22 +128,20 @@ class DateTimes {
     String? maxDate,
     String format = Format.fyyyyMMdd,
   }) {
-    String startDate =
-        _isNullOrEmpty(fromDate)
-            ? getCurrentDate()
-            : formatDateTime(
-              dateTime: fromDate!,
-              inFormat: format,
-              outFormat: format,
-            );
-    String endDate =
-        _isNullOrEmpty(toDate)
-            ? getCurrentDate()
-            : formatDateTime(
-              dateTime: toDate!,
-              inFormat: format,
-              outFormat: format,
-            );
+    String startDate = _isNullOrEmpty(fromDate)
+        ? getCurrentDate()
+        : formatDateTime(
+            dateTime: fromDate!,
+            inFormat: format,
+            outFormat: format,
+          );
+    String endDate = _isNullOrEmpty(toDate)
+        ? getCurrentDate()
+        : formatDateTime(
+            dateTime: toDate!,
+            inFormat: format,
+            outFormat: format,
+          );
     if (!validDateTimeRange(
       fromDateTime: startDate,
       toDateTime: endDate,
@@ -156,14 +152,12 @@ class DateTimes {
     }
     showDateRangePicker(
       context: context,
-      firstDate:
-          _isNullOrEmpty(minDate)
-              ? DateTime(1950)
-              : stringToDateTime(date: minDate!),
-      lastDate:
-          _isNullOrEmpty(maxDate)
-              ? DateTime(3000)
-              : stringToDateTime(date: maxDate!),
+      firstDate: _isNullOrEmpty(minDate)
+          ? DateTime(1950)
+          : stringToDateTime(date: minDate!),
+      lastDate: _isNullOrEmpty(maxDate)
+          ? DateTime(3000)
+          : stringToDateTime(date: maxDate!),
       initialDateRange: DateTimeRange(
         start: stringToDateTime(date: startDate),
         end: stringToDateTime(date: endDate),
@@ -175,22 +169,20 @@ class DateTimes {
         fDate = dateTimeToString(date: value.start, format: format);
         tDate = dateTimeToString(date: value.end, format: format);
       } else {
-        fDate =
-            _isNullOrEmpty(fromDate)
-                ? ""
-                : formatDateTime(
-                  dateTime: fromDate!,
-                  inFormat: format,
-                  outFormat: format,
-                );
-        tDate =
-            _isNullOrEmpty(toDate)
-                ? ""
-                : formatDateTime(
-                  dateTime: toDate!,
-                  inFormat: format,
-                  outFormat: format,
-                );
+        fDate = _isNullOrEmpty(fromDate)
+            ? ""
+            : formatDateTime(
+                dateTime: fromDate!,
+                inFormat: format,
+                outFormat: format,
+              );
+        tDate = _isNullOrEmpty(toDate)
+            ? ""
+            : formatDateTime(
+                dateTime: toDate!,
+                inFormat: format,
+                outFormat: format,
+              );
       }
       onSelected(fDate, tDate);
     });
@@ -289,8 +281,9 @@ class DateTimes {
 
   /// start and end date of month by date
   static DateValue startAndEndDateOfMonth({String? date}) {
-    DateTime dateTime =
-        (date != null) ? stringToDateTime(date: date) : DateTime.now();
+    DateTime dateTime = (date != null)
+        ? stringToDateTime(date: date)
+        : DateTime.now();
     return DateValue(
       startDate: dateTimeToString(
         date: DateTime(dateTime.year, dateTime.month, 1),
@@ -366,15 +359,14 @@ class DateTimes {
       if (value != null) {
         selectedTime = timeOfDayToString(time: value, hasSeconds: hasSeconds);
       } else {
-        selectedTime =
-            _isNullOrEmpty(time)
-                ? ""
-                : hasSeconds
-                ? time!
-                : timeOfDayToString(
-                  time: stringToTimeOfDay(time: time),
-                  hasSeconds: hasSeconds,
-                );
+        selectedTime = _isNullOrEmpty(time)
+            ? ""
+            : hasSeconds
+            ? time!
+            : timeOfDayToString(
+                time: stringToTimeOfDay(time: time),
+                hasSeconds: hasSeconds,
+              );
       }
       onSelected(selectedTime);
     });
