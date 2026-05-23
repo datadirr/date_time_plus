@@ -1,3 +1,7 @@
+## 10.1.0
+
+* Upgrade dependencies.
+
 ## 10.0.0
 
 * Upgrade dependencies.
