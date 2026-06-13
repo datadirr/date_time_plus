@@ -38,7 +38,8 @@ class Format {
   static const String fSlashddMMyyyyHHmmss = "dd/MM/yyyy HH:mm:ss";
   static const String fyyyyMMddhhmma = "yyyy-MM-dd hh:mm a";
   static const String fSlashyyyyMMddhhmma = "yyyy/MM/dd hh:mm a";
-  static const String fddMMyyyyhhmma = "dd-MM-yyyy HH:mm a";
+  static const String fddMMyyyyhhmma = "dd-MM-yyyy hh:mm a";
+  static const String fddMMyyyyHHmma = "dd-MM-yyyy HH:mm a";
   static const String fSlashddMMyyyyhhmma = "dd/MM/yyyy hh:mm a";
   static const String fyyyyMMddHHmm = "yyyy-MM-dd HH:mm";
   static const String fSlashyyyyMMddHHmm = "yyyy/MM/dd HH:mm";
