@@ -23,7 +23,15 @@ class Format {
   static const String fddMMM = "dd MMM";
   static const String fMMMMyyyy = "MMMM yyyy";
   static const String fddMMMyyyy = "dd MMM yyyy";
+  static const String fddMMMyyyyHHmmss = "dd MMM yyyy HH:mm:ss";
+  static const String fddMMMyyyyhhmmss = "dd MMM yyyy hh:mm:ss";
+  static const String fddMMMyyyyHHmma = "dd MMM yyyy HH:mm a";
+  static const String fddMMMyyyyhhmma = "dd MMM yyyy hh:mm a";
   static const String fddMMMyy = "dd MMM yy";
+  static const String fddMMMyyHHmmss = "dd MMM yy HH:mm:ss";
+  static const String fddMMMyyhhmmss = "dd MMM yy hh:mm:ss";
+  static const String fddMMMyyHHmma = "dd MMM yy HH:mm a";
+  static const String fddMMMyyhhmma = "dd MMM yy hh:mm a";
   static const String fMMMEd = "MMMEd";
   static const String fddEEE = "dd EEE";
   static const String fddEEEMMM = "dd EEE, MMM";
